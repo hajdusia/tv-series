@@ -12,35 +12,35 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping({"", "/"})
-public class Controller {
+@RequestMapping
+public class TvSeriesController {
 
     private InfoService infoService;
 
     private ReviewService reviewService;
 
     @Autowired
-    public Controller(InfoService infoService, ReviewService reviewService) {
+    public TvSeriesController(InfoService infoService, ReviewService reviewService) {
         this.infoService = infoService;
         this.reviewService = reviewService;
     }
 
-    @RequestMapping({"/index", "/tv-series"})
+    @GetMapping({"/tv-series"})
     public List<TVSeries> getAllTVSeries() {
         return infoService.getAll();
     }
 
-    @RequestMapping("tv-series/name/{name}")
+    @GetMapping("tv-series/name/{name}")
     Optional<TVSeries> getTVSeriesByName(@PathVariable String name) {
         return infoService.getByName(name);
     }
 
-    @RequestMapping("tv-series/genre/{genre}")
+    @GetMapping("tv-series/genre/{genre}")
     List<TVSeries> getTVSeriesByGenre(@PathVariable Genre genre) {
         return infoService.getByGenre(genre);
     }
 
-    @RequestMapping("tv-series/name/{name}/review")
+    @GetMapping("tv-series/name/{name}/review")
     Optional<Double> getTVSeriesByGenre(@PathVariable String name) {
         return infoService.getByName(name)
                 .map(series -> reviewService.getAverageReview(series));
