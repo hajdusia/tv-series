@@ -25,7 +25,7 @@ public class TvSeriesController {
         this.reviewService = reviewService;
     }
 
-    @GetMapping({"/tv-series"})
+    @GetMapping("tv-series")
     public List<TVSeries> getAllTVSeries() {
         return infoService.getAll();
     }
@@ -41,20 +41,20 @@ public class TvSeriesController {
     }
 
     @GetMapping("tv-series/name/{name}/review")
-    Optional<Double> getTVSeriesByGenre(@PathVariable String name) {
+    Optional<Double> getReview(@PathVariable String name) {
         return infoService.getByName(name)
                 .map(series -> reviewService.getAverageReview(series));
     }
 
     @PostMapping("tv-series/name/{name}/review/{review}")
-    Double review(@PathVariable String name, @PathVariable Integer review) {
+    Optional<Double> addReview(@PathVariable String name, @PathVariable Integer review) {
         Optional<TVSeries> tvSeries = infoService.getByName(name);
 
         if (tvSeries.isPresent()) {
             reviewService.review(tvSeries.get(), review);
-            return reviewService.getAverageReview(tvSeries.get());
+            return tvSeries.map(series -> reviewService.getAverageReview(series));
         }
 
-        return null; //improve
+        return Optional.empty();
     }
 }
