@@ -25,9 +25,12 @@ docker run -p 8080:8080 -t pl.hajduk.anna/tv-series
 
 When the application starts, you can use Swagger (localhost:8080/swagger) to test it manually.
 
-### Running tests
+### Running unit tests
+You can run unit tests with Gradle:
 
-...
+```
+./gradlew test
+```
 
 ### Assumptions and caveats
 - Database is mocked with use of Java collections.
