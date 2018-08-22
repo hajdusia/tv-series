@@ -1,13 +1,13 @@
 package pl.hajduk.anna.tvseries.domain;
 
+import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
+@Builder
 @Data
 public class Episode {
     private String title;
-    private Genre genre;
-    private LocalDateTime premiereDate;
-    private Double review;
+    private LocalDate premiereDate;
 }
