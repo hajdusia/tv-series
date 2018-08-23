@@ -23,7 +23,7 @@ You can easily build and run a Docker image using commands:
 docker run -p 8080:8080 -t pl.hajduk.anna/tv-series
 ```
 
-When the application starts, you can use Swagger (localhost:8080/swagger) to test it manually.
+When the application starts, you can use Swagger (localhost:8080/swagger-ui.html) to test it manually.
 
 ### Running unit tests
 You can run unit tests with Gradle:
